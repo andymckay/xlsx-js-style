@@ -15083,18 +15083,18 @@ function write_ws_xml(idx, opts, wb, rels) {
 
 	o[o.length] = (writextag('dimension', null, {'ref': ref}));
 
-  var kids = [];
-  if (ws['!freeze']) {
-    var pane = '';
-    pane = writextag('pane', null, ws['!freeze'])
+	var kids = [];
+	if (ws['!freeze']) {
+		var pane = '';
+		pane = writextag('pane', null, ws['!freeze'])
 		kids.push(pane)
 	}
 
 	var sheetView = writextag('sheetView', kids.join('') || undefined, {
-    tabSelected: opts.tabSelected === undefined ? '0' : opts.tabSelected,  // see issue #26, need to set WorkbookViews if this is set
-    workbookViewId: opts.workbookViewId === undefined ? '0' : opts.workbookViewId,
+		tabSelected: opts.tabSelected === undefined ? '0' : opts.tabSelected,  // see issue #26, need to set WorkbookViews if this is set
+		workbookViewId: opts.workbookViewId === undefined ? '0' : opts.workbookViewId,
 		rightToLeft: wb.Workbook.Views[0].RTL ? "1" : "0"
-  });
+	});
 
 	o[o.length] = writextag('sheetViews', sheetView);
 	//o[o.length] = write_ws_xml_sheetviews(ws, opts, idx, wb);
@@ -15189,7 +15189,6 @@ ws['!links'].forEach(function(l) {
 	/* extLst */
 
 	if(o.length>1) { o[o.length] = ('</worksheet>'); o[1]=o[1].replace("/>",">"); }
-	console.log(o);
 	return o.join("");
 }
 
